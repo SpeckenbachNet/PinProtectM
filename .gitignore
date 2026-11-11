@@ -1,0 +1,4 @@
+.vscode/sftp.json
+.DS_Store
+/build/dist/
+/build/*.zip

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade">
+    <name>plg_system_pinprotect</name>
+    <author>Michael Speckenbach</author>
+    <authorEmail>software@speckenbach.net</authorEmail>
+    <authorUrl>https://software.speckenbach.net</authorUrl>
+    <creationDate>2026-11-11</creationDate>
+    <license>GNU General Public License version 2 or later</license>
+    <version>0.1.0</version>
+    <description>PLG_SYSTEM_PINPROTECT_XML_DESCRIPTION</description>
+
+    <namespace path="src">SpeckenbachNet\Plugin\System\PinProtect</namespace>
+
+    <files>
+        <folder plugin="pinprotect">services</folder>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+    </files>
+
+    <languages folder="language">
+        <language tag="en-GB">en-GB/plg_system_pinprotect.ini</language>
+        <language tag="en-GB">en-GB/plg_system_pinprotect.sys.ini</language>
+        <language tag="de-DE">de-DE/plg_system_pinprotect.ini</language>
+        <language tag="de-DE">de-DE/plg_system_pinprotect.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="access_pin"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_PIN_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_PIN_DESC"
+                    filter="trim"
+                    autocomplete="off"
+                />
+                <field
+                    name="allowed_itemids"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_ALLOWED_ITEMIDS_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_ALLOWED_ITEMIDS_DESC"
+                    hint="101,105"
+                    filter="trim"
+                />
+                <field
+                    name="allowed_urls"
+                    type="textarea"
+                    label="PLG_SYSTEM_PINPROTECT_ALLOWED_URLS_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_ALLOWED_URLS_DESC"
+                    rows="5"
+                    filter="raw"
+                />
+                <field
+                    name="skip_logged_in"
+                    type="radio"
+                    layout="joomla.form.field.radio.switcher"
+                    label="PLG_SYSTEM_PINPROTECT_SKIP_LOGGED_IN_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_SKIP_LOGGED_IN_DESC"
+                    default="0"
+                    filter="integer"
+                    >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+
+            <fieldset name="security" label="PLG_SYSTEM_PINPROTECT_FIELDSET_SECURITY">
+                <field
+                    name="max_attempts"
+                    type="number"
+                    label="PLG_SYSTEM_PINPROTECT_MAX_ATTEMPTS_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_MAX_ATTEMPTS_DESC"
+                    default="5"
+                    min="0"
+                    max="100"
+                    filter="integer"
+                />
+                <field
+                    name="lockout_minutes"
+                    type="number"
+                    label="PLG_SYSTEM_PINPROTECT_LOCKOUT_MINUTES_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_LOCKOUT_MINUTES_DESC"
+                    default="5"
+                    min="1"
+                    max="1440"
+                    filter="integer"
+                    showon="max_attempts!:0"
+                />
+            </fieldset>
+
+            <fieldset name="page" label="PLG_SYSTEM_PINPROTECT_FIELDSET_PAGE">
+                <field
+                    name="header_content"
+                    type="editor"
+                    label="PLG_SYSTEM_PINPROTECT_HEADER_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_HEADER_DESC"
+                    filter="raw"
+                    buttons="true"
+                />
+                <field
+                    name="footer_content"
+                    type="editor"
+                    label="PLG_SYSTEM_PINPROTECT_FOOTER_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_FOOTER_DESC"
+                    filter="raw"
+                    buttons="true"
+                />
+                <field
+                    name="stylesheet"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_STYLESHEET_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_STYLESHEET_DESC"
+                    hint="media/templates/site/cassiopeia/css/user.css"
+                    filter="trim"
+                />
+                <field
+                    name="custom_css"
+                    type="textarea"
+                    label="PLG_SYSTEM_PINPROTECT_CUSTOM_CSS_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_CUSTOM_CSS_DESC"
+                    rows="10"
+                    filter="raw"
+                />
+            </fieldset>
+
+            <fieldset name="notice" label="PLG_SYSTEM_PINPROTECT_FIELDSET_NOTICE">
+                <field
+                    name="privacy_notice"
+                    type="radio"
+                    layout="joomla.form.field.radio.switcher"
+                    label="PLG_SYSTEM_PINPROTECT_PRIVACY_NOTICE_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_PRIVACY_NOTICE_DESC"
+                    default="1"
+                    filter="integer"
+                    >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                    name="privacy_url"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_DESC"
+                    hint="/datenschutz"
+                    filter="trim"
+                    showon="privacy_notice:1"
+                />
+            </fieldset>
+        </fields>
+    </config>
+
+    <updateservers>
+        <server type="extension" priority="1" name="PinProtectM">https://github.com/SpeckenbachNet/PinProtectM/releases/latest/download/updates.xml</server>
+    </updateservers>
+</extension>

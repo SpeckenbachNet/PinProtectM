@@ -1,0 +1,31 @@
+[
+    {
+        "version": "0.1.0",
+        "changes": {
+            "en-GB": [
+                "First version for Joomla 6",
+                "Locks the whole frontend with a PIN after routing, before any component runs",
+                "Exceptions by menu item ID (also with SEF URLs) or by URL part",
+                "Without a PIN the plugin does nothing and warns in the backend",
+                "Form with security token; the session is bound to the current PIN",
+                "Lock after too many wrong attempts per IP address (adjustable)",
+                "Option to skip logged-in users",
+                "PIN page with header, footer, custom CSS, optional stylesheet and privacy notice",
+                "English and German",
+                "Updates via System → Update"
+            ],
+            "de-DE": [
+                "Erste Version für Joomla 6",
+                "Sperrt das ganze Frontend mit einer PIN nach dem Routing, bevor eine Komponente läuft",
+                "Ausnahmen per Menüpunkt-ID (auch mit SEF-URLs) oder URL-Teil",
+                "Ohne PIN tut das Plugin nichts und warnt im Backend",
+                "Formular mit Sicherheits-Token; die Sitzung ist an die aktuelle PIN gebunden",
+                "Sperre nach zu vielen Fehlversuchen pro IP-Adresse (einstellbar)",
+                "Angemeldete Benutzer optional ausnehmen",
+                "PIN-Seite mit Kopf- und Fußbereich, eigenem CSS, optionalem Stylesheet und Datenschutzhinweis",
+                "Englisch und Deutsch",
+                "Updates über System → Aktualisieren"
+            ]
+        }
+    }
+]
