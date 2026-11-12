@@ -4,9 +4,9 @@
     <author>Michael Speckenbach</author>
     <authorEmail>software@speckenbach.net</authorEmail>
     <authorUrl>https://software.speckenbach.net</authorUrl>
-    <creationDate>2026-11-11</creationDate>
+    <creationDate>2026-11-12</creationDate>
     <license>GNU General Public License version 2 or later</license>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <description>PLG_SYSTEM_PINPROTECT_XML_DESCRIPTION</description>
 
     <namespace path="src">SpeckenbachNet\Plugin\System\PinProtect</namespace>
@@ -124,7 +124,23 @@
                 />
             </fieldset>
 
-            <fieldset name="notice" label="PLG_SYSTEM_PINPROTECT_FIELDSET_NOTICE">
+            <fieldset name="legal" label="PLG_SYSTEM_PINPROTECT_FIELDSET_LEGAL">
+                <field
+                    name="imprint_url"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_IMPRINT_URL_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_IMPRINT_URL_DESC"
+                    hint="/impressum"
+                    filter="trim"
+                />
+                <field
+                    name="privacy_url"
+                    type="text"
+                    label="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_LABEL"
+                    description="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_DESC"
+                    hint="/datenschutz"
+                    filter="trim"
+                />
                 <field
                     name="privacy_notice"
                     type="radio"
@@ -137,15 +153,6 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field
-                    name="privacy_url"
-                    type="text"
-                    label="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_LABEL"
-                    description="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_DESC"
-                    hint="/datenschutz"
-                    filter="trim"
-                    showon="privacy_notice:1"
-                />
             </fieldset>
         </fields>
     </config>

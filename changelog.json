@@ -1,5 +1,23 @@
 [
     {
+        "version": "0.2.0",
+        "security": 2,
+        "changes": {
+            "en-GB": [
+                "Security: \"Allowed URLs\" could be bypassed with the query string (e.g. ?x=/imprint). Only the path counts now, and entries have to match whole path segments",
+                "New: settings for imprint and privacy policy, shown as links below the PIN box; both pages open without a PIN",
+                "Fixed: the stylesheet is loaded after the built-in styles, so it overrides them",
+                "Documentation: allowed URLs, styling order and wrong attempts in the README and the setting descriptions"
+            ],
+            "de-DE": [
+                "Sicherheit: „Freie URLs“ ließen sich über die Query umgehen (z. B. ?x=/impressum). Jetzt zählt nur der Pfad, und Einträge müssen ganze Pfadabschnitte treffen",
+                "Neu: Einstellungen für Impressum und Datenschutzerklärung, als Links unter der PIN-Box; beide Seiten sind ohne PIN aufrufbar",
+                "Behoben: Das Stylesheet wird nach den eingebauten Styles geladen und überschreibt sie",
+                "Doku: freie URLs, CSS-Reihenfolge und Fehlversuche in README und Feldbeschreibungen"
+            ]
+        }
+    },
+    {
         "version": "0.1.0",
         "changes": {
             "en-GB": [

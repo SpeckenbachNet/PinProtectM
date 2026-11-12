@@ -15,6 +15,7 @@
  * @var string $customCss      Custom CSS
  * @var bool   $privacyNotice  Show the privacy notice
  * @var string $privacyUrl     Link to the privacy policy or ''
+ * @var string $imprintUrl     Link to the imprint or ''
  */
 
 \defined('_JEXEC') or die;
@@ -33,9 +34,7 @@ $title = Text::_('PLG_SYSTEM_PINPROTECT_PAGE_TITLE') . ($siteName !== '' ? ' · 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title><?php echo $e($title); ?></title>
-    <?php if ($stylesheet !== '') : ?>
-    <link rel="stylesheet" href="<?php echo $e($stylesheet); ?>">
-    <?php endif; ?>
+    <?php // Order matters, later wins: built-in styles, then the stylesheet, then the custom CSS ?>
     <style>
         body {
             margin: 0;
@@ -124,14 +123,28 @@ $title = Text::_('PLG_SYSTEM_PINPROTECT_PAGE_TITLE') . ($siteName !== '' ? ' · 
             border-radius: 3px;
             cursor: pointer;
         }
+        .pinprotect-links {
+            margin: 15px 0 0;
+            font-size: 0.9rem;
+        }
+        .pinprotect-links a {
+            color: inherit;
+        }
         @media (max-width: 480px) {
             .pinprotect { padding-top: 30px; }
             .pinprotect-box { padding: 20px 15px; }
             .pinprotect-box h1 { font-size: 1.2rem; }
         }
+    </style>
+    <?php if ($stylesheet !== '') : ?>
+    <link rel="stylesheet" href="<?php echo $e($stylesheet); ?>">
+    <?php endif; ?>
+    <?php if (trim($customCss) !== '') : ?>
+    <style>
         /* Custom CSS from the plugin settings */
         <?php echo str_ireplace('</style', '', $customCss); ?>
     </style>
+    <?php endif; ?>
 </head>
 <body>
 <div class="pinprotect">
@@ -156,6 +169,20 @@ $title = Text::_('PLG_SYSTEM_PINPROTECT_PAGE_TITLE') . ($siteName !== '' ? ' · 
             <?php echo HTMLHelper::_('form.token'); ?>
         </form>
     </div>
+
+    <?php if ($imprintUrl !== '' || $privacyUrl !== '') : ?>
+    <p class="pinprotect-links">
+        <?php if ($imprintUrl !== '') : ?>
+        <a href="<?php echo $e($imprintUrl); ?>"><?php echo $e(Text::_('PLG_SYSTEM_PINPROTECT_LINK_IMPRINT')); ?></a>
+        <?php endif; ?>
+        <?php if ($imprintUrl !== '' && $privacyUrl !== '') : ?>
+        <span aria-hidden="true">·</span>
+        <?php endif; ?>
+        <?php if ($privacyUrl !== '') : ?>
+        <a href="<?php echo $e($privacyUrl); ?>"><?php echo $e(Text::_('PLG_SYSTEM_PINPROTECT_LINK_PRIVACY')); ?></a>
+        <?php endif; ?>
+    </p>
+    <?php endif; ?>
 
     <?php if (trim($footer) !== '') : ?>
     <div class="pinprotect-footer"><?php echo $footer; ?></div>

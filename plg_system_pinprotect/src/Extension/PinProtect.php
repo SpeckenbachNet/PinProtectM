@@ -169,19 +169,63 @@ final class PinProtect extends CMSPlugin implements SubscriberInterface
             }
         }
 
-        $allowedUrls = array_filter(array_map('trim', preg_split('/\R/', (string) $this->params->get('allowed_urls', ''))));
+        // Imprint and privacy policy are always reachable from the PIN page
+        $allowedUrls = preg_split('/\R/', (string) $this->params->get('allowed_urls', ''));
+        $allowedUrls[] = (string) $this->params->get('imprint_url', '');
+        $allowedUrls[] = (string) $this->params->get('privacy_url', '');
 
-        if ($allowedUrls) {
-            $current = rawurldecode(Uri::getInstance()->toString(['path', 'query']));
+        $current = $this->normalisePath(rawurldecode(Uri::getInstance()->getPath()));
 
-            foreach ($allowedUrls as $url) {
-                if (str_contains($current, $url)) {
-                    return true;
-                }
+        foreach ($allowedUrls as $url) {
+            $allowed = $this->localPath($url);
+
+            if ($allowed === '') {
+                continue;
+            }
+
+            // Only the path counts, never the query string. The entry has to match whole path
+            // segments: "/imprint" matches "/imprint", "/en/imprint" and "/imprint/page-2",
+            // but not "/imprint-old".
+            if (str_contains($current . '/', $allowed . '/')) {
+                return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Path part of an allowed URL entry, normalised; '' for empty entries and other hosts.
+     */
+    private function localPath(string $url): string
+    {
+        $url = trim($url);
+
+        if ($url === '') {
+            return '';
+        }
+
+        $parts = parse_url($url);
+
+        if ($parts === false) {
+            return '';
+        }
+
+        if (!empty($parts['host']) && strcasecmp($parts['host'], Uri::getInstance()->getHost()) !== 0) {
+            return '';
+        }
+
+        $path = $this->normalisePath(rawurldecode((string) ($parts['path'] ?? '')));
+
+        return $path === '/' ? '' : $path;
+    }
+
+    /**
+     * Leading slash, no trailing slash: "imprint/" becomes "/imprint".
+     */
+    private function normalisePath(string $path): string
+    {
+        return '/' . trim($path, '/');
     }
 
     /**
@@ -205,6 +249,7 @@ final class PinProtect extends CMSPlugin implements SubscriberInterface
             'customCss'     => (string) $this->params->get('custom_css', ''),
             'privacyNotice' => (bool) $this->params->get('privacy_notice', 1),
             'privacyUrl'    => (string) $this->params->get('privacy_url', ''),
+            'imprintUrl'    => (string) $this->params->get('imprint_url', ''),
         ];
 
         ob_start();
