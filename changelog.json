@@ -1,5 +1,12 @@
 [
     {
+        "version": "0.2.1",
+        "changes": {
+            "en-GB": ["Fixed: the placeholders of the imprint and privacy policy fields follow the backend language"],
+            "de-DE": ["Behoben: Die Platzhalter der Felder Impressum und Datenschutzerklärung folgen der Backend-Sprache"]
+        }
+    },
+    {
         "version": "0.2.0",
         "security": 2,
         "changes": {

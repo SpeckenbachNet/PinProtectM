@@ -6,7 +6,7 @@
     <authorUrl>https://software.speckenbach.net</authorUrl>
     <creationDate>2026-11-12</creationDate>
     <license>GNU General Public License version 2 or later</license>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <description>PLG_SYSTEM_PINPROTECT_XML_DESCRIPTION</description>
 
     <namespace path="src">SpeckenbachNet\Plugin\System\PinProtect</namespace>
@@ -130,7 +130,7 @@
                     type="text"
                     label="PLG_SYSTEM_PINPROTECT_IMPRINT_URL_LABEL"
                     description="PLG_SYSTEM_PINPROTECT_IMPRINT_URL_DESC"
-                    hint="/impressum"
+                    hint="PLG_SYSTEM_PINPROTECT_IMPRINT_URL_HINT"
                     filter="trim"
                 />
                 <field
@@ -138,7 +138,7 @@
                     type="text"
                     label="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_LABEL"
                     description="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_DESC"
-                    hint="/datenschutz"
+                    hint="PLG_SYSTEM_PINPROTECT_PRIVACY_URL_HINT"
                     filter="trim"
                 />
                 <field
