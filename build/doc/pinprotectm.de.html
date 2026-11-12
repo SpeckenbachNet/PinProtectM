@@ -1,0 +1,143 @@
+<div class="mm-page">
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <h1 class="mb-0">PinProtectM – Dokumentation</h1>
+    <a class="btn btn-outline-primary btn-sm" href="en/pinprotectm/documentation" hreflang="en">English</a>
+</div>
+<nav class="card mb-5" aria-label="Inhalt">
+  <div class="card-body">
+    <h2 class="h5 card-title">Inhalt</h2>
+    <ol class="mb-0" style="columns: 2; max-width: 30rem"><li><a href="#installation">Installation</a></li><li><a href="#access">Zugang</a></li><li><a href="#attempts">Fehlversuche</a></li><li><a href="#pinpage">PIN-Seite</a></li><li><a href="#legal">Rechtliche Links</a></li><li><a href="#updates">Updates</a></li><li><a href="#about">Über PinProtectM</a></li></ol>
+  </div>
+</nav>
+
+<p class="text-body-secondary">Die Bilder zeigen das englische Backend. Hinter jedem Feldnamen steht deshalb in Klammern der englische Begriff.</p>
+
+<section class="mb-5" id="installation">
+<h2 class="border-bottom pb-2 mb-3">Installation</h2>
+<p>PinProtectM stellt eine PIN vor deine ganze Website. Besucher sehen zuerst eine kleine PIN-Seite; wer die PIN kennt, kommt hinein. Benutzerkonten sind nicht nötig. Das Backend bleibt wie gewohnt erreichbar.</p>
+<ol>
+<li>Lade <strong>plg_system_pinprotect-&lt;Version&gt;.zip</strong> aus dem <a href="https://github.com/SpeckenbachNet/PinProtectM/releases/latest">neuesten Release</a> herunter.</li>
+<li>In Joomla: <strong>System → Installieren → Erweiterungen</strong>, die Datei hochladen.</li>
+<li><strong>System → Plugins → System - PinProtectM</strong>: die PIN eintragen, dann das Plugin aktivieren.</li>
+</ol>
+<p>Voraussetzungen: Joomla 6.0 oder neuer, PHP 8.3 oder neuer.</p>
+<div class="mm-story my-3 ms-0"><p class="mb-0">Solange keine PIN eingetragen ist, tut das Plugin nichts. Das Kontrollzentrum und die Plugin-Liste zeigen dann eine Warnung, damit du es merkst.</p></div>
+</section>
+
+<section class="mb-5" id="access">
+<h2 class="border-bottom pb-2 mb-3">Zugang</h2>
+<p>Im Reiter <strong>Plugin</strong> legst du fest, wer hineinkommt und welche Seiten offen bleiben.</p>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/settings-plugin.png" alt="Reiter Plugin mit PIN, freien Menüpunkten, freien URLs und dem Schalter für angemeldete Benutzer" loading="lazy"><figcaption class="figure-caption">Reiter Plugin mit PIN, freien Menüpunkten, freien URLs und dem Schalter für angemeldete Benutzer</figcaption></figure>
+<h3 class="h5 mt-4">PIN</h3>
+<p>Der Code, den Besucher eingeben müssen. Er gilt für die Browser-Sitzung: Wer ihn einmal eingegeben hat, bewegt sich frei auf der Website, bis der Browser geschlossen wird.</p>
+<p>Änderst du die PIN, wird beim nächsten Klick jeder nach der neuen gefragt, auch wer die alte gerade eben eingegeben hat.</p>
+<h3 class="h5 mt-4">Freie Menüpunkte (Allowed Menu Items)</h3>
+<p>IDs der Menüpunkte, die ohne PIN aufrufbar sind, durch Kommas getrennt, zum Beispiel <strong>101,105</strong>. Die IDs stehen in der Liste der Menüeinträge in der Spalte ID. Das ist der sicherste Weg, einzelne Seiten offen zu lassen.</p>
+<h3 class="h5 mt-4">Freie URLs (Allowed URLs)</h3>
+<p>Ein Pfad pro Zeile, zum Beispiel <strong>/kontakt</strong>. Es zählt nur der Pfad der Adresse, nie der Teil nach einem Fragezeichen. Ein Eintrag muss ganze Abschnitte des Pfads treffen:</p>
+<div class="table-responsive">
+<table class="table table-sm">
+<thead><tr><th>Eintrag</th><th>Gibt frei</th><th>Gibt nicht frei</th></tr></thead>
+<tbody><tr><td><code>/kontakt</code></td><td><code>/kontakt</code>, <code>/de/kontakt</code>, <code>/kontakt/seite-2</code></td><td><code>/kontakt-alt</code>, <code>/news?x=/kontakt</code></td></tr></tbody>
+</table>
+</div>
+<p>Das Sprachkürzel davor (<code>/de/</code>) und ein Ordner, in dem Joomla installiert ist, sind erlaubt. Ein Eintrag gilt also für alle Sprachen.</p>
+<div class="mm-story my-3 ms-0"><p class="mb-0">Impressum und Datenschutzerklärung brauchen hier keinen Eintrag: Sobald du sie unter <a href="#legal"><strong>Rechtliche Links</strong></a> einträgst, sind sie von selbst ohne PIN aufrufbar.</p></div>
+<p>Adressen ohne SEF (<code>index.php?option=…</code>) lassen sich nicht als URL eintragen. Nimm dafür die ID des Menüpunkts.</p>
+<h3 class="h5 mt-4">Angemeldete Benutzer ausnehmen (Skip Logged-in Users)</h3>
+<p>Angemeldete Benutzer deiner Website brauchen keine PIN. Standardmäßig aus.</p>
+<p>Damit man sich auf der Website anmelden kann, muss die Anmeldeseite selbst ohne PIN aufrufbar sein: Trag ihre Menüpunkt-ID unter <strong>Freie Menüpunkte</strong> ein.</p>
+</section>
+
+<section class="mb-5" id="attempts">
+<h2 class="border-bottom pb-2 mb-3">Fehlversuche</h2>
+<p>Der Reiter <strong>Sicherheit</strong> (<em>Security</em>) schützt die PIN vor dem Erraten.</p>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/settings-security.png" alt="Reiter Security mit der Zahl der Fehlversuche und der Sperrzeit" loading="lazy"><figcaption class="figure-caption">Reiter Security mit der Zahl der Fehlversuche und der Sperrzeit</figcaption></figure>
+<ul>
+<li><strong>Fehlversuche</strong> (<em>Wrong Attempts</em>) – nach so vielen falschen PINs von einer IP-Adresse wird die Eingabe gesperrt. Standard 5; <strong>0</strong> schaltet die Sperre ab.</li>
+<li><strong>Sperre (Minuten)</strong> (<em>Lock (Minutes)</em>) – so lange dauert die Sperre. Standard 5 Minuten.</li>
+</ul>
+<p>Während der Sperre zeigt die PIN-Seite eine Meldung, auch wenn die richtige PIN eingegeben wird.</p>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/pin-error.png" alt="PIN-Seite mit der Meldung: zu viele Fehlversuche" loading="lazy"><figcaption class="figure-caption">PIN-Seite mit der Meldung: zu viele Fehlversuche</figcaption></figure>
+<p>Die richtige PIN setzt den Zähler zurück. Fehlversuche sind vergessen, wenn die Sperrzeit ohne neuen Fehlversuch vergangen ist.</p>
+<div class="mm-story my-3 ms-0"><p class="mb-0">Besucher mit derselben IP-Adresse, zum Beispiel in einem Büro oder Haushalt, teilen sich auch die Sperre. Die Tippfehler einer Person können die anderen für ein paar Minuten aussperren.</p></div>
+<h3 class="h5 mt-4">Wo die Fehlversuche gespeichert werden</h3>
+<p>Im Joomla-Cache, in der Gruppe <strong>plg_system_pinprotect</strong> (beim Datei-Handler im Ordner <code>cache/plg_system_pinprotect/</code>). Die IP-Adresse wird nur als Hash gespeichert, nie im Klartext. Das funktioniert unabhängig davon, ob der Cache in der globalen Konfiguration eingeschaltet ist.</p>
+<h3 class="h5 mt-4">Sperre aufheben</h3>
+<p><strong>System → Cache leeren</strong>, die Gruppe <strong>plg_system_pinprotect</strong> auswählen und löschen. Alle Zähler und Sperren sind damit auf einen Schlag weg.</p>
+</section>
+
+<section class="mb-5" id="pinpage">
+<h2 class="border-bottom pb-2 mb-3">PIN-Seite</h2>
+<p>Im Reiter <strong>PIN-Seite</strong> (<em>PIN Page</em>) gestaltest du, was Besucher sehen.</p>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/pin-page.png" alt="PIN-Seite mit Überschrift im Kopfbereich, der PIN-Box, den rechtlichen Links und dem Datenschutzhinweis unten" loading="lazy"><figcaption class="figure-caption">PIN-Seite mit Überschrift im Kopfbereich, der PIN-Box, den rechtlichen Links und dem Datenschutzhinweis unten</figcaption></figure>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/settings-page.png" alt="Reiter PIN Page mit Kopf- und Fußbereich, Stylesheet und eigenem CSS" loading="lazy"><figcaption class="figure-caption">Reiter PIN Page mit Kopf- und Fußbereich, Stylesheet und eigenem CSS</figcaption></figure>
+<h3 class="h5 mt-4">Kopfbereich und Fußbereich (Header, Footer)</h3>
+<p>Inhalt über und unter der PIN-Box, mit dem Editor geschrieben: ein Logo, ein Begrüßungstext, ein Hinweis, wen man nach der PIN fragt.</p>
+<p>Seiten, die du hier verlinkst, müssen ohne PIN aufrufbar sein, sonst fragen auch sie danach (siehe <a href="#access"><strong>Zugang</strong></a>).</p>
+<h3 class="h5 mt-4">Stylesheet</h3>
+<p>Optional: ein Stylesheet für die PIN-Seite, relativ zum Website-Stammverzeichnis oder als vollständige Adresse. Beim Template Cassiopeia ist das zum Beispiel <code>media/templates/site/cassiopeia/css/user.css</code>.</p>
+<h3 class="h5 mt-4">Eigenes CSS (Custom CSS)</h3>
+<p>Zusätzliche Styles nur für die PIN-Seite.</p>
+<h3 class="h5 mt-4">Reihenfolge der Styles</h3>
+<p>Die PIN-Seite lädt ihre Styles in dieser Reihenfolge. Was später kommt, gewinnt:</p>
+<ol>
+<li>die eingebauten Styles des Plugins (Grundlayout),</li>
+<li>das <strong>Stylesheet</strong>,</li>
+<li>das <strong>Eigene CSS</strong>.</li>
+</ol>
+<div class="mm-story my-3 ms-0"><p class="mb-0">Das Stylesheet überschreibt also das eingebaute Aussehen, und das eigene CSS überschreibt beides. Eine Regel, die sicher gewinnen soll, gehört ins eigene CSS.</p></div>
+<p>Diese Klassen stehen zur Verfügung:</p>
+<div class="table-responsive">
+<table class="table table-sm">
+<thead><tr><th>Klasse</th><th>Element</th></tr></thead>
+<tbody>
+<tr><td><code>.pinprotect</code></td><td>der ganze Inhalt der Seite</td></tr>
+<tr><td><code>.pinprotect-header</code></td><td>Kopfbereich</td></tr>
+<tr><td><code>.pinprotect-box</code></td><td>die weiße PIN-Box</td></tr>
+<tr><td><code>.pinprotect-error</code></td><td>Fehlermeldung in der Box</td></tr>
+<tr><td><code>.pinprotect-input</code></td><td>PIN-Feld</td></tr>
+<tr><td><code>.pinprotect-button</code></td><td>Knopf Senden</td></tr>
+<tr><td><code>.pinprotect-links</code></td><td>Impressum und Datenschutz unter der Box</td></tr>
+<tr><td><code>.pinprotect-footer</code></td><td>Fußbereich</td></tr>
+<tr><td><code>.pinprotect-notice</code></td><td>Datenschutzhinweis unten</td></tr>
+</tbody>
+</table>
+</div>
+<p>Beispiel:</p>
+<pre class="border rounded p-3 bg-light"><code>.pinprotect-button { background: #88A186; border-color: #88A186; }
+.pinprotect-notice { background: #A391B2; }</code></pre>
+</section>
+
+<section class="mb-5" id="legal">
+<h2 class="border-bottom pb-2 mb-3">Rechtliche Links</h2>
+<p>Impressum und Datenschutzerklärung müssen von jeder Seite aus erreichbar sein, auch von der PIN-Seite. Darum kümmert sich der Reiter <strong>Rechtliche Links</strong> (<em>Legal Links</em>).</p>
+<figure class="figure d-block text-center my-3"><img class="figure-img img-fluid rounded border" src="images/software/pinprotectm/help/settings-legal.png" alt="Reiter Legal Links mit Impressum, Datenschutzerklärung und dem Schalter für den Datenschutzhinweis" loading="lazy"><figcaption class="figure-caption">Reiter Legal Links mit Impressum, Datenschutzerklärung und dem Schalter für den Datenschutzhinweis</figcaption></figure>
+<ul>
+<li><strong>Impressum</strong> (<em>Imprint</em>) und <strong>Datenschutzerklärung</strong> (<em>Privacy Policy</em>) – die Adressen der beiden Seiten, zum Beispiel <code>/impressum</code>. Beide erscheinen als Links unter der PIN-Box und sind ohne PIN aufrufbar. Ein leeres Feld bedeutet: kein Link.</li>
+<li><strong>Datenschutzhinweis</strong> (<em>Privacy Notice</em>) – eine Leiste unten auf der PIN-Seite erklärt, dass ein technisch notwendiges Sitzungs-Cookie gespeichert wird, mit einem Link zur Datenschutzerklärung. Besucher schließen sie mit <strong>Verstanden</strong>, der Browser merkt sich das. Standardmäßig an.</li>
+</ul>
+</section>
+
+<section class="mb-5" id="updates">
+<h2 class="border-bottom pb-2 mb-3">Updates</h2>
+<p>Joomla sucht selbst nach neuen Versionen von PinProtectM. Sie erscheinen unter <strong>System → Aktualisieren → Erweiterungen</strong> und lassen sich mit einem Klick installieren; deine Einstellungen bleiben erhalten.</p>
+<p>Was sich in jeder Version geändert hat, steht auf der <a href="https://github.com/SpeckenbachNet/PinProtectM/releases">Release-Seite</a>.</p>
+</section>
+
+<section class="mb-5" id="about">
+<h2 class="border-bottom pb-2 mb-3">Über PinProtectM</h2>
+<p>System-Plugin für Joomla, das die gesamte Website mit einem PIN-Code schützt, mit Ausnahmen für einzelne Menüpunkte und URLs.</p>
+<div class="mm-story my-3 ms-0"><p class="mb-0">PinProtectM hält zufällige Besucher und Suchmaschinen fern. Es ersetzt keine echten Benutzerkonten: Wer die PIN kennt, kommt hinein.</p></div>
+<h3 class="h5 mt-4">Entwickler</h3>
+<p>Michael Speckenbach · SpeckenbachNet</p>
+<p>Webseite: <a href="https://software.speckenbach.net/pinprotectm">software.speckenbach.net/pinprotectm</a><br>
+Kontakt: <a href="mailto:software@speckenbach.net">software@speckenbach.net</a></p>
+<h3 class="h5 mt-4">Unterstützen</h3>
+<p>Gefällt dir PinProtectM? Spendier mir einen Kaffee: <a href="https://paypal.me/michaelspeckenbach">paypal.me/michaelspeckenbach</a></p>
+<h3 class="h5 mt-4">Lizenz</h3>
+<p>© 2026 Michael Speckenbach</p>
+<p>PinProtectM ist freie Software: Du kannst sie unter den Bedingungen der <strong>GNU General Public License</strong>, Version 2 oder (nach deiner Wahl) jeder späteren Version, weitergeben und/oder verändern. Das Programm wird ohne jede Gewährleistung bereitgestellt. Den Lizenztext findest du unter <a href="https://www.gnu.org/licenses/">gnu.org/licenses</a>.</p>
+<p>Quellcode: <a href="https://github.com/SpeckenbachNet/PinProtectM">github.com/SpeckenbachNet/PinProtectM</a></p>
+</section>
+</div>
