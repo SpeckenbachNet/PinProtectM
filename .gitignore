@@ -1,5 +1,4 @@
 .vscode/sftp.json
 .DS_Store
-/build/dist/
-/build/*.zip
 /_dev/
+/build/
