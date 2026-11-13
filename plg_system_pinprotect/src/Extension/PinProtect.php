@@ -24,7 +24,8 @@ use Joomla\Utilities\IpHelper;
  * Locks the whole frontend behind a PIN code.
  *
  * The check runs in onAfterRoute: routing has resolved the menu item (needed for the
- * Itemid exceptions with SEF URLs), but no component has been dispatched yet.
+ * Itemid exceptions with SEF URLs), but no component has been dispatched yet. onError covers
+ * errors thrown before that point, e.g. 404 for unknown URLs.
  */
 final class PinProtect extends CMSPlugin implements SubscriberInterface
 {
@@ -39,7 +40,10 @@ final class PinProtect extends CMSPlugin implements SubscriberInterface
 
     public static function getSubscribedEvents(): array
     {
-        return ['onAfterRoute' => 'onAfterRoute'];
+        return [
+            'onAfterRoute' => 'onAfterRoute',
+            'onError'      => 'onError',
+        ];
     }
 
     public function onAfterRoute(): void
@@ -54,6 +58,36 @@ final class PinProtect extends CMSPlugin implements SubscriberInterface
 
             return;
         }
+
+        $this->protect($pin);
+    }
+
+    /**
+     * Errors such as an unknown URL (404) are thrown while routing, i.e. before onAfterRoute.
+     * Without this check Joomla's error page, including the menu and other modules of the
+     * template, would be shown to visitors who have not entered the PIN.
+     */
+    public function onError(): void
+    {
+        if (!$this->getApplication()->isClient('site')) {
+            return;
+        }
+
+        try {
+            // Allowed pages that exist run without an error; an error page has nothing to show
+            // without the PIN, even when its URL matches an allowed entry (e.g. /en/imprint)
+            $this->protect(trim((string) $this->params->get('access_pin', '')), false);
+        } catch (\Throwable) {
+            // If the PIN page itself fails, Joomla renders its normal error page
+        }
+    }
+
+    /**
+     * Shows the PIN page (and ends the request) unless the visitor may see the page.
+     */
+    private function protect(string $pin, bool $allowExceptions = true): void
+    {
+        $app = $this->getApplication();
 
         // Only the website; API and CLI stay untouched. Without a PIN the plugin does nothing.
         if (!$app->isClient('site') || $pin === '') {
@@ -71,7 +105,7 @@ final class PinProtect extends CMSPlugin implements SubscriberInterface
             return;
         }
 
-        if ($this->isException()) {
+        if ($allowExceptions && $this->isException()) {
             return;
         }
 

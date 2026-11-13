@@ -1,5 +1,19 @@
 [
     {
+        "version": "0.2.2",
+        "security": 1,
+        "changes": {
+            "en-GB": [
+                "Security: unknown URLs showed Joomla's error page (with menu and footer) to visitors without the PIN. They get the PIN page now",
+                "Improved: \"Allowed URLs\" shows example entries as placeholder and explains the notation in more detail"
+            ],
+            "de-DE": [
+                "Sicherheit: Unbekannte URLs zeigten Besuchern ohne PIN Joomlas Fehlerseite (mit Menü und Fußbereich). Sie bekommen jetzt die PIN-Seite",
+                "Verbessert: „Freie URLs“ zeigt Beispieleinträge als Platzhalter und erklärt die Schreibweise genauer"
+            ]
+        }
+    },
+    {
         "version": "0.2.1",
         "changes": {
             "en-GB": ["Fixed: the placeholders of the imprint and privacy policy fields follow the backend language"],

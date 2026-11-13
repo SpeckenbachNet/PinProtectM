@@ -99,6 +99,12 @@ as a hash. This works whether caching is switched on in the Global Configuration
 PinProtectM keeps casual visitors and search engines out. It is not a replacement
 for real user accounts: everyone who knows the PIN gets in.
 
+Members with a user account can log in without the PIN: switch on **Skip Logged-in
+Users** and add the login page to **Allowed Menu Items** or **Allowed URLs**.
+
+Unknown URLs show the PIN page as well; Joomla's error page (404) only appears after
+the PIN was entered.
+
 ## Updates
 
 Joomla checks this repository's releases for updates. New versions show up under

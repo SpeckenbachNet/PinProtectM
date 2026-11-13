@@ -4,9 +4,9 @@
     <author>Michael Speckenbach</author>
     <authorEmail>software@speckenbach.net</authorEmail>
     <authorUrl>https://software.speckenbach.net</authorUrl>
-    <creationDate>2026-11-12</creationDate>
+    <creationDate>2026-11-13</creationDate>
     <license>GNU General Public License version 2 or later</license>
-    <version>0.2.1</version>
+    <version>0.2.2</version>
     <description>PLG_SYSTEM_PINPROTECT_XML_DESCRIPTION</description>
 
     <namespace path="src">SpeckenbachNet\Plugin\System\PinProtect</namespace>
@@ -48,6 +48,7 @@
                     type="textarea"
                     label="PLG_SYSTEM_PINPROTECT_ALLOWED_URLS_LABEL"
                     description="PLG_SYSTEM_PINPROTECT_ALLOWED_URLS_DESC"
+                    hint="PLG_SYSTEM_PINPROTECT_ALLOWED_URLS_HINT"
                     rows="5"
                     filter="raw"
                 />
