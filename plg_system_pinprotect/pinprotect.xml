@@ -6,7 +6,7 @@
     <authorUrl>https://software.speckenbach.net</authorUrl>
     <creationDate>2026-11-13</creationDate>
     <license>GNU General Public License version 2 or later</license>
-    <version>0.2.2</version>
+    <version>1.0.0</version>
     <description>PLG_SYSTEM_PINPROTECT_XML_DESCRIPTION</description>
 
     <namespace path="src">SpeckenbachNet\Plugin\System\PinProtect</namespace>

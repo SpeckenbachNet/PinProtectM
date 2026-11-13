@@ -1,5 +1,12 @@
 [
     {
+        "version": "1.0.0",
+        "changes": {
+            "en-GB": ["First stable release, tested in real use. No changes since 0.2.2"],
+            "de-DE": ["Erste stabile Version, im echten Einsatz getestet. Keine Änderungen seit 0.2.2"]
+        }
+    },
+    {
         "version": "0.2.2",
         "security": 1,
         "changes": {
